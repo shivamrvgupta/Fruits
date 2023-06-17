@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruits</title>
+       <!-- MDB icon -->
+       <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+       <!-- Font Awesome -->
+       <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+       <!-- Google Fonts Roboto -->
+       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+       <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.css" rel="stylesheet" />
+
+<!-- stylesheet -->
+<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <table class="table py-3">
+      <% if (fruits != '') { %>
+        <thead class="table-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Rating</th>
+            <th scope="col">Review</th>
+          </tr>
+        </thead>
+        <tbody>
+         
+          <% fruits.forEach((row, index) => { %> 
+            <tr>
+              <td scope="col"><%= index  %> </td>
+              <td scope="col"><%= row.name %> </td>
+              <td scope="col"><%= row.rating %></td>
+              <td scope="col"><%= row.review %></td>
+              <td class="text-center">
+                <a
+                  href="./update/<%= row.id %>"
+                  type="submit"
+                  class="btn btn-warning btn-sm"
+                >
+                  <i class="bx bxs-edit"></i>
+                </a>
+                <a
+                  href="./delete/<%= row.id %>"
+                  type="submit"
+                  class="btn btn-danger btn-sm"
+                >
+              
+                <i class="bx bxs-minus-circle"></i>
+            
+                </a>
+              </td>
+            </tr>
+            <% }) %> 
+          <% } else { %>
+            <h1 class="text-center text-secondary">NO Details Found</h1>
+          <% } %>
+        
+
+        </tbody>
+      </table>
+
+      <a
+      href="./add"
+      type="submit"
+      class="btn btn-warning btn-sm mr-3"
+    >
+      Add Fruits
+    </a>
+<!-- MDB -->
+<script type="text/javascript" src="js/mdb.min.js"></script>
+<!-- Custom scripts -->
+<script type="text/javascript">
+    let sidebar = document.querySelector(".sidebar");
+    let closeBtn = document.querySelector("#btn");
+    let searchBtn = document.querySelector(".bx-search");
+  
+    closeBtn.addEventListener("click", ()=>{
+      sidebar.classList.toggle("open");
+      menuBtnChange();//calling the function(optional)
+    });
+  
+    searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+      sidebar.classList.toggle("open");
+      menuBtnChange(); //calling the function(optional)
+    });
+  
+    // following are the code to change sidebar button(optional)
+    function menuBtnChange() {
+     if(sidebar.classList.contains("open")){
+       closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+     }else {
+       closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+     }
+    }
+</script>
+</body>
+</html>
